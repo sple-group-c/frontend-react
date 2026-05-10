@@ -7,34 +7,34 @@ import { useParams } from "@/commons/hooks/useParams"
 import { HeaderContext } from "@/commons/components"
 import { useNavigate } from "react-router";
 import { useAuth } from '@/commons/auth';
-import Card from "../components/invalidCard";
-import getBeritaData from '../services/getBeritaData'
+import BeritaTable from "../components/BeritaTable";
+import getListBerita from '../services/getListBerita'
 
-const BeritaList = props => {
+const TableBeritaPage = props => {
   const { checkPermission } = useAuth();
   const [isLoading, setIsLoading] = useState({
-	list: false,
+	tableBerita: false,
 
   });
   const { setTitle } = useContext(HeaderContext);
 
   useEffect(() => {
-    setTitle("BeritaList")
+    setTitle("Table Berita Page")
   }, []);
 
 
-const [beritaData, setBeritaData] = useState()
+const [listBerita, setListBerita] = useState()
 
 
 useEffect(() => {
-
+		
 		const fetchData = async () => {
 			try {
-				setIsLoading(prev => ({...prev, list: true}))
-				const { data: beritaData } = await getBeritaData()
-				setBeritaData(beritaData.data)
+				setIsLoading(prev => ({...prev, tableBerita: true}))
+				const { data: listBerita } = await getListBerita()
+				setListBerita(listBerita.data)
 			} finally {
-				setIsLoading(prev => ({...prev, list: false}))
+				setIsLoading(prev => ({...prev, tableBerita: false}))
 			}
 		}
 		fetchData()
@@ -45,30 +45,31 @@ useEffect(() => {
 		buttons={
 			<>
 			<Layouts.ViewContainerButtonLayout>
-			  	<Link to={`/berita/tambah
+			  	<Link to={`invalid
 			  	`}>
-			  		<Button id="_7Rtt0EBdEfG_EbYrkoLnzw" className="p-2" variant="primary">
-			  		  Add
+			  		<Button id="_25GhsEw4EfG1qvAbnuoO6w" className="p-2" variant="primary">
+			  		  Tambah Berita
 			  		</Button>
 			  	</Link>
-
+			
 			  </Layouts.ViewContainerButtonLayout>
 			</>
 		}
 	>
-<Layouts.ListContainerCardLayout
-	title={"List"}
-	singularName={""}
-	items={[beritaData]}
-	isLoading={isLoading.list}
+<Layouts.ListContainerTableLayout
+	title={"Table Berita"}
+	singularName={"Berita"}
+	items={[listBerita]}
+	isLoading={isLoading.tableBerita}
 >
-	<invalidCard
-		beritaData={beritaData}
-
-  	/>
-</Layouts.ListContainerCardLayout>
+	<BeritaTable
+		listBerita={listBerita}
+		
+	/>
+</Layouts.ListContainerTableLayout>
 
 	</Layouts.ViewContainerLayout>
   )
 }
-export default BeritaList
+export default TableBeritaPage
+

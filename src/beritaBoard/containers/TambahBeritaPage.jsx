@@ -6,28 +6,18 @@ import { Link } from "react-router";
 import { useParams } from "@/commons/hooks/useParams"
 import { HeaderContext } from "@/commons/components"
 import { useSearchParams } from "react-router";
-import FormEditBerita from '../components/FormEditBerita'
+import FormTambahBerita from '../components/FormTambahBerita'
 
-const Edit = props => {
-  const { idBerita } = useParams()
+const TambahBeritaPage = props => {
   const [isLoading, setIsLoading] = useState({
-	editBerita: false,
+	tambahBerita: false,
 
   });
   const { setTitle } = useContext(HeaderContext);
 
   useEffect(() => {
-    setTitle("Edit")
+    setTitle("Tambah Berita Page")
   }, []);
-
-
-useEffect(() => {
-    const fetch = async () => {
-	  setIsLoading(prev => ({...prev, editBerita: true}))
-	  setIsLoading(prev => ({...prev, editBerita: false}))
-    }
-	fetch()
-  }, [])
 
   return (
 	<Layouts.ViewContainerLayout
@@ -38,10 +28,10 @@ useEffect(() => {
 		}
 	>
 <Layouts.FormContainerLayout
-		singularName={""}
-		isLoading={isLoading.editBerita}
+		singularName={"Berita"}
+		
 	>
-		<FormEditBerita
+		<FormTambahBerita
 			{...props}
 		/>
 	</Layouts.FormContainerLayout>
@@ -49,4 +39,5 @@ useEffect(() => {
 	</Layouts.ViewContainerLayout>
   )
 }
-export default Edit
+export default TambahBeritaPage
+

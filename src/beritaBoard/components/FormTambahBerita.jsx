@@ -17,73 +17,76 @@ import {
   findAllowedPermission,
 } from "@/commons/constants/allowedPermission";
 import cleanFormData from "@/commons/utils/cleanFormData";
-import editBerita from '../services/editBerita'
+import saveBerita from '../services/saveBerita'
 import { notifyError, notifySuccess} from "@/commons/utils/toaster";
 import * as Layouts from "@/commons/layouts";
 
-const FormEditBerita = ({
+const FormTambahBerita = ({ 
  }) => {
-  const {
-    control,
+  const { 
+    control, 
     handleSubmit,
-  } = useForm({ defaultValues:  })
-
+  } = useForm()
+  
+  
+  
+  
   const navigate = useNavigate()
-
+  
   const onSubmitEvent = (data) => {
     const cleanData = cleanFormData(data)
-    editBerita({
+    saveBerita({
       ...cleanData,
     })
     .then(({ data: { data } }) => {
-     navigate(`null`)
-  	notifySuccess(`Edit Berita berhasil!`);
+      navigate(`/berita`)
+  	notifySuccess(`Save Berita berhasil!`);
     })
     .catch((error) => {
       console.error(error);
           notifyError(error);
     });
   }
-
-
+  
+  
   return (
 	<div>
 	  <Layouts.FormComponentLayout
-		  title="EditBerita"
+		  title="Tambah Berita" 
 		  onSubmit={handleSubmit(onSubmitEvent)}
-
+	
 	    vas={[
 		  ]}
-
+	
 		  formFields={[
-
+	
 	      <Controller
-	        key="content"
-	        name="content"
+	        key="slot"
+	        name="slot"
 	        control={control}
+	        rules={{ required: "Harap masukkan content" }} 
 	        render={({ field, fieldState }) => (
 	        <InputField
-	          label="content"
+	          label="Content"
 	          placeholder="Masukkan content"
-	          defaultValue={.content}
 	          fieldState={fieldState}
 	          {...field}
-	          isRequired={false}
+	          isRequired={true}
 	        />
 	        )}
 	      />
-
+	
 		  ,
-
+	
 		  ]}
-
+	
 		  itemsEvents={[
-		    <Button id="_e-coUEBkEfG_EbYrkoLnzw" key="OnSubmit Event" type="submit" variant="primary">OnSubmit Event</Button>
+		    <Button id="_3jxEwEw3EfG1qvAbnuoO6w" key="OnSubmit Event" type="submit" variant="primary">OnSubmit Event</Button>
 	    ]}
 	  />
-
+	    
 	</div>
   )
 }
 
-export default FormEditBerita
+export default FormTambahBerita

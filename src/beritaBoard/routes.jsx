@@ -1,24 +1,24 @@
 
 import React from 'react';
-import BeritaList from './containers/BeritaList'
-import AddBerita from './containers/AddBerita'
-import Edit from './containers/Edit'
+import TableBeritaPage from './containers/TableBeritaPage'
+import TambahBeritaPage from './containers/TambahBeritaPage'
+import DetailBeritaPage from './containers/DetailBeritaPage'
 
 const beritaBoardRoutes = [
-{
+{ 
     path: "/berita",
-    element: <BeritaList />,
-  }
+    element: <TableBeritaPage />,
+  }	
 ,
-{
-    path: "/berita/tambah",
-    element: <AddBerita />,
-  }
-,
-{
+{ 
     path: "",
-    element: <Edit />,
-  }
+    element: <TambahBeritaPage />,
+  }	
+,
+{ 
+    path: "/berita/:id_berita",
+    element: <DetailBeritaPage />,
+  }	
 
 ]
 
