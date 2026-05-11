@@ -61,8 +61,8 @@ const FormTambahBerita = ({
 		  formFields={[
 	
 	      <Controller
-	        key="slot"
-	        name="slot"
+	        key="content"
+	        name="content"
 	        control={control}
 	        rules={{ required: "Harap masukkan content" }} 
 	        render={({ field, fieldState }) => (

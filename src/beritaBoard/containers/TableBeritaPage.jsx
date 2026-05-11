@@ -45,7 +45,7 @@ useEffect(() => {
 		buttons={
 			<>
 			<Layouts.ViewContainerButtonLayout>
-			  	<Link to={`invalid
+			  	<Link to={`/berita/tambah
 			  	`}>
 			  		<Button id="_25GhsEw4EfG1qvAbnuoO6w" className="p-2" variant="primary">
 			  		  Tambah Berita

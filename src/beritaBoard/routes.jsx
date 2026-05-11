@@ -11,7 +11,7 @@ const beritaBoardRoutes = [
   }	
 ,
 { 
-    path: "",
+    path: "/berita/tambah",
     element: <TambahBeritaPage />,
   }	
 ,
