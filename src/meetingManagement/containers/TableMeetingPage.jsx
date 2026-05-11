@@ -25,6 +25,7 @@ const TableMeetingPage = props => {
 
 const [listMeeting, setListMeeting] = useState()
 
+
 useEffect(() => {
 		
 		const fetchData = async () => {
@@ -43,7 +44,15 @@ useEffect(() => {
 	<Layouts.ViewContainerLayout
 		buttons={
 			<>
-			<></>
+			<Layouts.ViewContainerButtonLayout>
+			  	<Link to={`/meeting-management/add
+			  	`}>
+			  		<Button id="_6zGk8EzvEfGSBdf0iay4xQ" className="p-2" variant="primary">
+			  		  Add Meeting Management
+			  		</Button>
+			  	</Link>
+			
+			  </Layouts.ViewContainerButtonLayout>
 			</>
 		}
 	>
