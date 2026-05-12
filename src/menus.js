@@ -17,39 +17,71 @@ const addSubMenu = (label, subMenu, menu = menus) => {
 
 export const settingsMenu = [
   {
-    id: 'pengaturan',
-    route: '#',
-    label: 'Pengaturan',
-    permission: 'administrator',
+    id: "pengaturan",
+    route: "#",
+    label: "Pengaturan",
+    permission: "administrator",
     subMenus: [
       {
-        id: 'pengaturan-tampilan',
-        route: '/settings/appearance',
-        label: 'Pengaturan Tampilan',
-        permission: 'administrator',
+        id: "pengaturan-tampilan",
+        route: "/settings/appearance",
+        label: "Pengaturan Tampilan",
+        permission: "administrator",
       },
       {
-        id: 'pengaturan-role',
-        route: '/settings/role',
-        label: 'Pengaturan Role',
-        permission: 'administrator',
+        id: "pengaturan-role",
+        route: "/settings/role",
+        label: "Pengaturan Role",
+        permission: "administrator",
       },
       {
-        id: 'pengaturan-user',
-        route: '/settings/user',
-        label: 'Pengaturan User',
-        permission: 'administrator',
+        id: "pengaturan-user",
+        route: "/settings/user",
+        label: "Pengaturan User",
+        permission: "administrator",
       },
-    ]
+    ],
   },
-]
+];
 
 export default menus;
 
 addMenu({
-	id: '_OHznAEiWEfGoJul5bIxc2g',
-	route: '/reminder',
-    label: 'Reminder',
-    permission: '',
-	subMenus: [],
-})
+  id: "taskManagement",
+  route: "/taskmanagement",
+  label: "Task Management",
+  permission: "",
+  subMenus: [],
+});
+
+addMenu({
+  id: "_OHznAEiWEfGoJul5bIxc2g",
+  route: "/label",
+  label: "Label",
+  permission: "",
+  subMenus: [],
+});
+
+addMenu({
+  id: "meetingManagement",
+  route: "/meeting-management",
+  label: "Meeting Management",
+  permission: "",
+  subMenus: [],
+});
+
+addMenu({
+  id: "project",
+  route: "/project",
+  label: "Project",
+  permission: "",
+  subMenus: [],
+});
+
+addMenu({
+  id: "reminder",
+  route: "/reminder",
+  label: "Reminder",
+  permission: "",
+  subMenus: [],
+});
