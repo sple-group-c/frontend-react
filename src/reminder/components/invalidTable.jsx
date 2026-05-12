@@ -15,10 +15,10 @@ const invalidTable = ({ reminderList,
   	  items={[reminderList]}
   	  itemsAttrs={[
           {
-            id: "timeTrigger",
+            id: "hour",
             condition: "",
-            label: "timeTrigger",
-            featureName: "timeTrigger",
+            label: "hour",
+            featureName: "hour",
             editable: false
           }
   ,        {
@@ -26,6 +26,20 @@ const invalidTable = ({ reminderList,
             condition: "",
             label: "isDisabled",
             featureName: "isDisabled",
+            editable: false
+          }
+  ,        {
+            id: "minute",
+            condition: "",
+            label: "minute",
+            featureName: "minute",
+            editable: false
+          }
+  ,        {
+            id: "reminderId",
+            condition: "",
+            label: "Reminder Id",
+            featureName: "idReminder",
             editable: false
           }
   ]}
