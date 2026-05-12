@@ -17,7 +17,7 @@ import {
   findAllowedPermission,
 } from "@/commons/constants/allowedPermission";
 import cleanFormData from "@/commons/utils/cleanFormData";
-import action from '../services/action'
+import saveReminder from '../services/saveReminder'
 import { notifyError, notifySuccess} from "@/commons/utils/toaster";
 import * as Layouts from "@/commons/layouts";
 
@@ -33,13 +33,14 @@ const FormReminderForm = ({
   
   const navigate = useNavigate()
   
-  const onSubmitEvent = (data) => {
+  const save = (data) => {
     const cleanData = cleanFormData(data)
-    action({
+    saveReminder({
       ...cleanData,
     })
     .then(({ data: { data } }) => {
-  	notifySuccess(`Action berhasil!`);
+      navigate(`/reminder`)
+  	notifySuccess(`Save Reminder berhasil!`);
     })
     .catch((error) => {
       console.error(error);
@@ -52,7 +53,7 @@ const FormReminderForm = ({
 	<div>
 	  <Layouts.FormComponentLayout
 		  title="ReminderForm" 
-		  onSubmit={handleSubmit(onSubmitEvent)}
+		  onSubmit={handleSubmit(save)}
 	
 	    vas={[
 		  ]}
@@ -76,12 +77,46 @@ const FormReminderForm = ({
 	        )}
 	      />
 	
+	,
+	      <Controller
+	        key="hour"
+	        name="hour"
+	        control={control}
+	        render={({ field, fieldState }) => (
+	        <InputField
+	          label="Hour"
+	          placeholder="Masukkan hour"
+	          type="number"
+	          fieldState={fieldState}
+	          {...field}
+	          isRequired={false}
+	        />
+	        )}
+	      />
+	
+	,
+	      <Controller
+	        key="minute"
+	        name="minute"
+	        control={control}
+	        render={({ field, fieldState }) => (
+	        <InputField
+	          label="Minute"
+	          placeholder="Masukkan minute"
+	          type="number"
+	          fieldState={fieldState}
+	          {...field}
+	          isRequired={false}
+	        />
+	        )}
+	      />
+	
 		  ,
 	
 		  ]}
 	
 		  itemsEvents={[
-		    <Button id="_T_rrQEiUEfGoJul5bIxc2g" key="OnSubmit Event" type="submit" variant="primary">OnSubmit Event</Button>
+		    <Button id="_T_rrQEiUEfGoJul5bIxc2g" key="Save" type="submit" variant="primary">Save</Button>
 	    ]}
 	  />
 	    
