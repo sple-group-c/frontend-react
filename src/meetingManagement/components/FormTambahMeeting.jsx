@@ -17,7 +17,7 @@ import {
   findAllowedPermission,
 } from "@/commons/constants/allowedPermission";
 import cleanFormData from "@/commons/utils/cleanFormData";
-import saveMeeting from '../services/saveMeeting'
+import saveMeetingManagement from '../services/saveMeetingManagement'
 import { notifyError, notifySuccess} from "@/commons/utils/toaster";
 import * as Layouts from "@/commons/layouts";
 
@@ -35,12 +35,12 @@ const FormTambahMeeting = ({
   
   const onSubmitEvent = (data) => {
     const cleanData = cleanFormData(data)
-    saveMeeting({
+    saveMeetingManagement({
       ...cleanData,
     })
     .then(({ data: { data } }) => {
       navigate(`/meeting-management`)
-  	notifySuccess(`Save Meeting berhasil!`);
+  	notifySuccess(`Save MeetingManagement berhasil!`);
     })
     .catch((error) => {
       console.error(error);

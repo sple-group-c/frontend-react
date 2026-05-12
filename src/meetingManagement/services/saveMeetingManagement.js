@@ -3,13 +3,13 @@ import tokenManager from '@/commons/utils/token'
 import environment from '@/commons/utils/environment'
 
 
-const saveMeeting = (data = {}) => {
+const saveMeetingManagement = (data = {}) => {
 	let body = data;
 
 	const { getToken } = tokenManager();
 	const token = getToken();
 	
-	return axios.post(`${environment.rootApi}/call/meeting/save`, body,
+	return axios.post(`${environment.rootApi}/call/meetingmanagement/save`, body,
 	{
 		params: { token },
 		
@@ -19,4 +19,4 @@ const saveMeeting = (data = {}) => {
 		}
 	})} 
 
-export default saveMeeting
+export default saveMeetingManagement
