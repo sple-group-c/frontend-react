@@ -17,7 +17,7 @@ import {
   findAllowedPermission,
 } from "@/commons/constants/allowedPermission";
 import cleanFormData from "@/commons/utils/cleanFormData";
-import addTask from '../services/addTask'
+import saveTaskmanagement from '../services/saveTaskmanagement'
 import { notifyError, notifySuccess} from "@/commons/utils/toaster";
 import * as Layouts from "@/commons/layouts";
 
@@ -35,11 +35,12 @@ const FormAddTask = ({
   
   const onSubmitEvent = (data) => {
     const cleanData = cleanFormData(data)
-    addTask({
+    saveTaskmanagement({
       ...cleanData,
     })
     .then(({ data: { data } }) => {
-  	notifySuccess(`Add Task berhasil!`);
+      navigate(`/taskmanagement`)
+  	notifySuccess(`Save Taskmanagement berhasil!`);
     })
     .catch((error) => {
       console.error(error);
@@ -78,6 +79,22 @@ const FormAddTask = ({
 	      <Controller
 	        key="description"
 	        name="description"
+	        control={control}
+	        render={({ field, fieldState }) => (
+	        <InputField
+	          label="Simple Field"
+	          placeholder="Masukkan simple field"
+	          fieldState={fieldState}
+	          {...field}
+	          isRequired={false}
+	        />
+	        )}
+	      />
+	
+	,
+	      <Controller
+	        key="status"
+	        name="status"
 	        control={control}
 	        render={({ field, fieldState }) => (
 	        <InputField

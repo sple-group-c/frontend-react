@@ -7,13 +7,13 @@ import { useParams } from "@/commons/hooks/useParams"
 import { HeaderContext } from "@/commons/components"
 import { useNavigate } from "react-router";
 import { useAuth } from '@/commons/auth';
-import Card from "../components/invalidCard";
-import getTaskData from '../services/getTaskData'
+import TaskmanagementTable from "../components/TaskmanagementTable";
+import getListTaskmanagement from '../services/getListTaskmanagement'
 
 const TaskList = props => {
   const { checkPermission } = useAuth();
   const [isLoading, setIsLoading] = useState({
-	list: false,
+	tableTaskmanagement: false,
 
   });
   const { setTitle } = useContext(HeaderContext);
@@ -23,18 +23,18 @@ const TaskList = props => {
   }, []);
 
 
-const [taskData, setTaskData] = useState()
+const [listTaskmanagement, setListTaskmanagement] = useState()
 
 
 useEffect(() => {
 		
 		const fetchData = async () => {
 			try {
-				setIsLoading(prev => ({...prev, list: true}))
-				const { data: taskData } = await getTaskData()
-				setTaskData(taskData.data)
+				setIsLoading(prev => ({...prev, tableTaskmanagement: true}))
+				const { data: listTaskmanagement } = await getListTaskmanagement()
+				setListTaskmanagement(listTaskmanagement.data)
 			} finally {
-				setIsLoading(prev => ({...prev, list: false}))
+				setIsLoading(prev => ({...prev, tableTaskmanagement: false}))
 			}
 		}
 		fetchData()
@@ -48,7 +48,7 @@ useEffect(() => {
 			  	<Link to={`/task/tambah
 			  	`}>
 			  		<Button id="_7Rtt0EBdEfG_EbYrkoLnzw" className="p-2" variant="primary">
-			  		  Add
+			  		  save
 			  		</Button>
 			  	</Link>
 			
@@ -56,17 +56,17 @@ useEffect(() => {
 			</>
 		}
 	>
-<Layouts.ListContainerCardLayout
-	title={"List"}
-	singularName={""}
-	items={[taskData]}
-	isLoading={isLoading.list}
+<Layouts.ListContainerTableLayout
+	title={"Table Taskmanagement"}
+	singularName={"Taskmanagement"}
+	items={[listTaskmanagement]}
+	isLoading={isLoading.tableTaskmanagement}
 >
-	<invalidCard
-		taskData={taskData}
+	<TaskmanagementTable
+		listTaskmanagement={listTaskmanagement}
 		
-  	/>
-</Layouts.ListContainerCardLayout>
+	/>
+</Layouts.ListContainerTableLayout>
 
 	</Layouts.ViewContainerLayout>
   )
