@@ -7,34 +7,33 @@ import { useParams } from "@/commons/hooks/useParams"
 import { HeaderContext } from "@/commons/components"
 import { useNavigate } from "react-router";
 import { useAuth } from '@/commons/auth';
-import Table from "../components/invalidTable";
-import getListLabel from '../services/getListLabel'
+import ColorTable from "../components/ColorTable";
+import getListColor from '../services/getListColor'
 
-const TableLabelPage = props => {
+const TableColorPage = props => {
   const { checkPermission } = useAuth();
   const [isLoading, setIsLoading] = useState({
-	tableLabel: false,
+	tableColor: false,
 
   });
   const { setTitle } = useContext(HeaderContext);
 
   useEffect(() => {
-    setTitle("Table Label Page")
+    setTitle("Table Color Page")
   }, []);
 
 
-const [listLabel, setListLabel] = useState()
-
+const [listColor, setListColor] = useState()
 
 useEffect(() => {
 		
 		const fetchData = async () => {
 			try {
-				setIsLoading(prev => ({...prev, tableLabel: true}))
-				const { data: listLabel } = await getListLabel()
-				setListLabel(listLabel.data)
+				setIsLoading(prev => ({...prev, tableColor: true}))
+				const { data: listColor } = await getListColor()
+				setListColor(listColor.data)
 			} finally {
-				setIsLoading(prev => ({...prev, tableLabel: false}))
+				setIsLoading(prev => ({...prev, tableColor: false}))
 			}
 		}
 		fetchData()
@@ -44,26 +43,18 @@ useEffect(() => {
 	<Layouts.ViewContainerLayout
 		buttons={
 			<>
-			<Layouts.ViewContainerButtonLayout>
-			  	<Link to={`/label/tambah
-			  	`}>
-			  		<Button id="_Olce4EiOEfGg0fy8ktMBQg" className="p-2" variant="primary">
-			  		  ViewElement Event
-			  		</Button>
-			  	</Link>
-			
-			  </Layouts.ViewContainerButtonLayout>
+			<></>
 			</>
 		}
 	>
 <Layouts.ListContainerTableLayout
-	title={"TableLabel"}
-	singularName={""}
-	items={[listLabel]}
-	isLoading={isLoading.tableLabel}
+	title={"Table Color"}
+	singularName={"Color"}
+	items={[listColor]}
+	isLoading={isLoading.tableColor}
 >
-	<invalidTable
-		listLabel={listLabel}
+	<ColorTable
+		listColor={listColor}
 		
 	/>
 </Layouts.ListContainerTableLayout>
@@ -71,5 +62,5 @@ useEffect(() => {
 	</Layouts.ViewContainerLayout>
   )
 }
-export default TableLabelPage
+export default TableColorPage
 

@@ -47,9 +47,9 @@ export const settingsMenu = [
 export default menus;
 
 addMenu({
-	id: '_OHznAEiWEfGoJul5bIxc2g',
-	route: '/reminder',
-    label: 'Reminder',
+	id: '_0yEP0FOjEfGTsJ5D5kjfOw',
+	route: '/color',
+    label: 'Color',
     permission: '',
 	subMenus: [],
 })
