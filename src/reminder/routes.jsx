@@ -10,7 +10,7 @@ const reminderRoutes = [
   }	
 ,
 { 
-    path: "/reminer/tambah",
+    path: "/reminder/tambah",
     element: <ReminderFormPage />,
   }	
 

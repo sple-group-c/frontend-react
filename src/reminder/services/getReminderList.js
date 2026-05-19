@@ -1,13 +1,21 @@
-const getReminderList = () => {
-  return Promise.resolve({
-    data: {
-      data: [
-        { id: 1, name: "Dummy Reminder 1", message: "First test reminder" },
-        { id: 2, name: "Dummy Reminder 2", message: "Second test reminder" },
-        { id: 3, name: "Dummy Reminder 3", message: "Third test reminder" },
-      ],
-    },
-  });
-};
+import axios from "axios";
+import tokenManager from "@/commons/utils/token";
+import environment from "@/commons/utils/environment";
+import { notifyError } from "@/commons/utils/toaster";
 
-export default getReminderList;
+const getReminderList = (params = {}) => {
+	const { getToken } = tokenManager();
+	const token = getToken();
+	let paramsGet = Object.assign(params, {token});
+	return axios.get(`${environment.rootApi}/call/reminder/list`, {
+		params: paramsGet,		
+		headers: {
+			'Authorization': token,
+		}
+	}).catch((error) => {
+		console.error(error);
+		notifyError(error);
+	})
+} 
+
+export default getReminderList

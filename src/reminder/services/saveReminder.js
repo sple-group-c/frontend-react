@@ -3,13 +3,13 @@ import tokenManager from '@/commons/utils/token'
 import environment from '@/commons/utils/environment'
 
 
-const saveBerita = (data = {}) => {
+const saveReminder = (data = {}) => {
 	let body = data;
 
 	const { getToken } = tokenManager();
 	const token = getToken();
 	
-	return axios.post(`${environment.rootApi}/call/beritaboard/save`, body,
+	return axios.post(`${environment.rootApi}/call/reminder/save`, body,
 	{
 		params: { token },
 		
@@ -19,4 +19,4 @@ const saveBerita = (data = {}) => {
 		}
 	})} 
 
-export default saveBerita
+export default saveReminder

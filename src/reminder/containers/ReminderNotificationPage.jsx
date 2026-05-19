@@ -45,7 +45,7 @@ useEffect(() => {
 		buttons={
 			<>
 			<Layouts.ViewContainerButtonLayout>
-			  	<Link to={`/reminer/tambah
+			  	<Link to={`/reminder/tambah
 			  	`}>
 			  		<Button id="_dEwZYEiUEfGoJul5bIxc2g" className="p-2" variant="primary">
 			  		  Tambah Reminder
@@ -62,9 +62,9 @@ useEffect(() => {
 	items={[reminderList]}
 	isLoading={isLoading.reminderNotificationTable}
 >
-	<invalidTable
+	<Table
 		reminderList={reminderList}
-		
+
 	/>
 </Layouts.ListContainerTableLayout>
 

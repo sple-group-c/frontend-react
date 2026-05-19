@@ -4,9 +4,6 @@ import userRoutes from "@/user/routes";
 import roleRoutes from "@/role/routes";
 import staticPageRoutes from "@/staticPage/routes";
 import homeRoutes from "@/home/routes";
-import labelRoutes from "@/label/routes";
-import meetingManagementRoutes from "@/meetingManagement/routes";
-import projectRoutes from "@/project/routes";
 import reminderRoutes from "@/reminder/routes";
 import taskManagementRoutes from "@/taskManagement/routes";
 import projectMeetingRoutes from "@/projectMeeting/routes";
@@ -29,10 +26,10 @@ const GlobalRoutes = () => {
 }
 
 const MobileRoutes = () => {
-	const router = useRoutes([
-		...commonMobileRoutes,
-	])
-	return router
+	const router = useRoutes([ 
+	  ...commonMobileRoutes, 
+  ])
+  return router
 }
 
-export { GlobalRoutes, MobileRoutes }
+export {GlobalRoutes, MobileRoutes}
