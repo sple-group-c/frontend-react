@@ -7,6 +7,7 @@ import { useParams } from "@/commons/hooks/useParams"
 import { HeaderContext } from "@/commons/components"
 import { useSearchParams } from "react-router";
 import FormReminderForm from '../components/FormReminderForm'
+import getTaskList from '../services/getTaskList'
 
 const ReminderFormPage = props => {
   const [isLoading, setIsLoading] = useState({
@@ -19,6 +20,20 @@ const ReminderFormPage = props => {
     setTitle("ReminderFormPage")
   }, []);
 
+
+const [taskList, setTaskList] = useState()
+
+  useEffect(() => {
+    const fetch = async () => {
+	  setIsLoading(prev => ({...prev, reminderForm: true}))
+      const { data: taskListResponse } = await getTaskList({  })
+
+	  setTaskList(taskListResponse.data)
+	  setIsLoading(prev => ({...prev, reminderForm: false}))
+    }
+	fetch()
+  }, [])
+
   return (
 	<Layouts.ViewContainerLayout
 		buttons={
@@ -29,11 +44,16 @@ const ReminderFormPage = props => {
 	>
 <Layouts.FormContainerLayout
 		singularName={""}
-		
+		isLoading={isLoading.reminderForm}
 	>
-		<FormReminderForm
-			{...props}
-		/>
+		{taskList ? 
+		(<>
+		 <FormReminderForm
+			{...{ 
+				taskList
+				}}
+		 /> 
+		</>)  : (<></>)}
 	</Layouts.FormContainerLayout>
 
 	</Layouts.ViewContainerLayout>

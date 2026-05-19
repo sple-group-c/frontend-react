@@ -53,3 +53,11 @@ addMenu({
     permission: '',
 	subMenus: [],
 })
+
+addMenu({
+	id: '_OT6BcFObEfGrfJrQ5Xvm_A',
+	route: '/emailreminder',
+    label: 'EmailReminder',
+    permission: '',
+	subMenus: [],
+})

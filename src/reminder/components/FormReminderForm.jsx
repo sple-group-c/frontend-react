@@ -22,11 +22,12 @@ import { notifyError, notifySuccess} from "@/commons/utils/toaster";
 import * as Layouts from "@/commons/layouts";
 
 const FormReminderForm = ({ 
+	taskList
  }) => {
-  const { 
-    control, 
+  const {
+    control,
     handleSubmit,
-  } = useForm()
+  } = useForm({ defaultValues: { isDisabled: false } })
   
   
   
@@ -60,24 +61,6 @@ const FormReminderForm = ({
 	
 		  formFields={[
 	
-	      <Controller
-	        key="resendIntervalMin"
-	        name="resendIntervalMin"
-	        control={control}
-	        rules={{ required: "Harap masukkan resendintervalmin" }} 
-	        render={({ field, fieldState }) => (
-	        <InputField
-	          label="resendIntervalMin"
-	          placeholder="Masukkan resendintervalmin"
-	          type="number"
-	          fieldState={fieldState}
-	          {...field}
-	          isRequired={true}
-	        />
-	        )}
-	      />
-	
-	,
 	      <Controller
 	        key="hour"
 	        name="hour"
@@ -113,6 +96,24 @@ const FormReminderForm = ({
 	
 		  ,
 	
+	
+	      <Controller
+	        key=""
+	        name=""
+	        control={control}
+	        render={({ field, fieldState }) => (
+	        <SelectionField
+	          
+	          label="remindingForId"
+	          options={taskList}
+	          optionLabel="remindingForId"
+	          placeholder="Masukkan remindingforid"
+	          fieldState={fieldState}
+	          {...field}
+	          isRequired={false}
+	        />
+	        )}
+	      />
 		  ]}
 	
 		  itemsEvents={[

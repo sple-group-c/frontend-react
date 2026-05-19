@@ -13,7 +13,8 @@ const GlobalRoutes = () => {
 	...userRoutes,
 	...roleRoutes,
 	...homeRoutes, 
-	...reminderRoutes,
+	...reminderRoutes, 
+	...reminderRoutes, 
   ])
   return router
 }
