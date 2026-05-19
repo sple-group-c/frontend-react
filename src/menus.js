@@ -71,6 +71,15 @@ addMenu({
 });
 
 addMenu({
+  id: "projectMeeting",
+  route: "/project-meeting",
+  label: "Project Meeting",
+  permission: "",
+  subMenus: [],
+});
+
+
+addMenu({
   id: "project",
   route: "/project",
   label: "Project",

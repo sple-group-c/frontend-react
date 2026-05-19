@@ -56,5 +56,8 @@
     "prettier": "prettier --write src/**/*.{js,jsx,json,css,ts,tsx}"
   },
   "type": "module",
-  "packageManager": "npm@11.0.0"
+  "packageManager": "npm@11.0.0",
+  "trustedDependencies": [
+    "@swc/core"
+  ]
 }

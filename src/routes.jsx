@@ -9,6 +9,7 @@ import meetingManagementRoutes from "@/meetingManagement/routes";
 import projectRoutes from "@/project/routes";
 import reminderRoutes from "@/reminder/routes";
 import taskManagementRoutes from "@/taskManagement/routes";
+import projectMeetingRoutes from "@/projectMeeting/routes";
 
 const GlobalRoutes = () => {
 	const router = useRoutes([
@@ -22,6 +23,7 @@ const GlobalRoutes = () => {
 		...projectRoutes,
 		...reminderRoutes,
 		...taskManagementRoutes,
+		...projectMeetingRoutes
 	])
 	return router
 }
