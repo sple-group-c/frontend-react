@@ -1,43 +1,43 @@
 import React from "react";
-import { useNavigate, useSearchParams } from "react-router";
+import { useNavigate } from "react-router";
 import { Controller, useForm } from "react-hook-form";
 import {
   Button,
-  Form,
   InputField,
   SelectionField,
-  MultiSelectionField,
-  VisualizationAttr,
-  Spinner,
-  Modal,
 } from "@/commons/components";
-import {
-  ALLOWED_PERMISSIONS,
-  findAllowedPermission,
-} from "@/commons/constants/allowedPermission";
 import cleanFormData from "@/commons/utils/cleanFormData";
-import saveEmailreminder from '../services/saveEmailreminder'
-import { notifyError, notifySuccess} from "@/commons/utils/toaster";
+import updateEmailReminder from '../services/updateEmailReminder'
+import { notifyError, notifySuccess } from "@/commons/utils/toaster";
 import * as Layouts from "@/commons/layouts";
 
-const ModifiedFormEmailReminderForm = ({
-	taskList
- }) => {
-  const {
-    control,
-    handleSubmit,
-  } = useForm()
+const isDisabledOptions = [
+  { value: "false", label: "false" },
+  { value: "true", label: "true" },
+]
+
+const ModifiedFormEmailReminderEditForm = ({ emailEditFields }) => {
+  const { control, handleSubmit } = useForm({
+    defaultValues: {
+      hour: emailEditFields.hour,
+      minute: emailEditFields.minute,
+      email: emailEditFields.email,
+      isDisabled: String(emailEditFields.isDisabled),
+    }
+  })
 
   const navigate = useNavigate()
 
-  const submit = (data) => {
-    const cleanData = cleanFormData({ ...data, isDisabled: false })
-    saveEmailreminder({
+  const save = (data) => {
+    const cleanData = cleanFormData(data)
+    updateEmailReminder({
       ...cleanData,
+      idReminder: String(emailEditFields.idReminder),
+      remindingForId: String(emailEditFields.remindingForId),
     })
     .then(({ data: { data } }) => {
-      navigate(`/emailreminder`);
-  	notifySuccess(`Save Emailreminder berhasil!`);
+      navigate(`/emailreminder`)
+      notifySuccess(`Update Email Reminder berhasil!`);
     })
     .catch((error) => {
       console.error(error);
@@ -45,15 +45,13 @@ const ModifiedFormEmailReminderForm = ({
     });
   }
 
-
   return (
 	<div>
 	  <Layouts.FormComponentLayout
-		  title="Email Reminder Form"
-		  onSubmit={handleSubmit(submit)}
+		  title="Email Reminder Edit Form"
+		  onSubmit={handleSubmit(save)}
 
-	    vas={[
-		  ]}
+	    vas={[]}
 
 		  formFields={[
 
@@ -112,17 +110,17 @@ const ModifiedFormEmailReminderForm = ({
 		  ,
 
 	      <Controller
-	        key="remindingForId"
-	        name="remindingForId"
+	        key="isDisabled"
+	        name="isDisabled"
 	        control={control}
-	        rules={{ required: "Harap pilih task" }}
+	        rules={{ required: "Harap pilih status" }}
 	        render={({ field, fieldState }) => (
 	        <SelectionField
-	          label="Reminding For"
-	          options={taskList}
-	          optionKey="idTask"
-	          optionLabel="title"
-	          placeholder="Pilih task"
+	          label="isDisabled"
+	          options={isDisabledOptions}
+	          optionKey="value"
+	          optionLabel="label"
+	          placeholder="Pilih status"
 	          fieldState={fieldState}
 	          {...field}
 	          isRequired={true}
@@ -132,12 +130,11 @@ const ModifiedFormEmailReminderForm = ({
 		  ]}
 
 		  itemsEvents={[
-		    <Button id="_4mkSoFOXEfGrfJrQ5Xvm_A" key="Submit" type="submit" variant="primary">Submit</Button>
+		    <Button id="_9P0B8F2YEfGoIKyHUqClpA" key="Save" type="submit" variant="primary">Save</Button>
 	    ]}
 	  />
-
 	</div>
   )
 }
 
-export default ModifiedFormEmailReminderForm
+export default ModifiedFormEmailReminderEditForm

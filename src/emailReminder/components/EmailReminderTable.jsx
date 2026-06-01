@@ -21,18 +21,18 @@ const EmailReminderTable = ({
             featureName: "hour",
             editable: false
           }
-  ,        {
-            id: "isDisabled",
-            condition: "",
-            label: "isDisabled",
-            featureName: "isDisabled",
-            editable: false
-          }
-  ,        {
+            ,        {
             id: "minute",
             condition: "",
             label: "minute",
             featureName: "minute",
+            editable: false
+          }
+    ,     {
+            id: "isDisabled",
+            condition: "",
+            label: "isDisabled",
+            featureName: "isDisabled",
             editable: false
           }
   ,        {
@@ -50,6 +50,17 @@ const EmailReminderTable = ({
             editable: false
           }
   ]}
+        itemsEvents={(emailReminderItem) => [
+          <Link to={`/emailreminder/${emailReminderItem.idReminder}`}>
+            <Button
+              id="_VtLUQF2PEfGoIKyHUqClpA"
+              size="sm"
+              variant="primary"
+            >
+              Edit Reminder
+            </Button>
+          </Link>
+        ]}
   	/>
   </>
   )

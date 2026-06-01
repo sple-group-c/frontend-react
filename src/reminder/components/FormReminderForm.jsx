@@ -21,19 +21,16 @@ import saveReminder from '../services/saveReminder'
 import { notifyError, notifySuccess} from "@/commons/utils/toaster";
 import * as Layouts from "@/commons/layouts";
 
-const FormReminderForm = ({ 
+const FormReminderForm = ({
 	taskList
  }) => {
-  const { 
-    control, 
+  const {
+    control,
     handleSubmit,
   } = useForm()
-  
-  
-  
-  
+
   const navigate = useNavigate()
-  
+
   const save = (data) => {
     const cleanData = cleanFormData({ ...data, isDisabled: false })
     saveReminder({
@@ -45,26 +42,27 @@ const FormReminderForm = ({
     })
     .catch((error) => {
       console.error(error);
-          notifyError(error);
+      notifyError(error);
     });
   }
-  
-  
+
+
   return (
 	<div>
 	  <Layouts.FormComponentLayout
-		  title="ReminderForm" 
+		  title="ReminderForm"
 		  onSubmit={handleSubmit(save)}
-	
+
 	    vas={[
 		  ]}
-	
+
 		  formFields={[
-	
+
 	      <Controller
 	        key="hour"
 	        name="hour"
 	        control={control}
+	        rules={{ required: "Harap masukkan hour" }}
 	        render={({ field, fieldState }) => (
 	        <InputField
 	          label="Hour"
@@ -72,16 +70,17 @@ const FormReminderForm = ({
 	          type="number"
 	          fieldState={fieldState}
 	          {...field}
-	          isRequired={false}
+	          isRequired={true}
 	        />
 	        )}
 	      />
-	
+
 	,
 	      <Controller
 	        key="minute"
 	        name="minute"
 	        control={control}
+	        rules={{ required: "Harap masukkan minute" }}
 	        render={({ field, fieldState }) => (
 	        <InputField
 	          label="Minute"
@@ -89,18 +88,19 @@ const FormReminderForm = ({
 	          type="number"
 	          fieldState={fieldState}
 	          {...field}
-	          isRequired={false}
+	          isRequired={true}
 	        />
 	        )}
 	      />
-	
+
 		  ,
-	
-	
+
+
 	      <Controller
 	        key="remindingForId"
 	        name="remindingForId"
 	        control={control}
+	        rules={{ required: "Harap pilih task" }}
 	        render={({ field, fieldState }) => (
 	        <SelectionField
 	          label="Reminding For"
@@ -110,17 +110,17 @@ const FormReminderForm = ({
 	          placeholder="Pilih task"
 	          fieldState={fieldState}
 	          {...field}
-	          isRequired={false}
+	          isRequired={true}
 	        />
 	        )}
 	      />
 		  ]}
-	
+
 		  itemsEvents={[
 		    <Button id="_T_rrQEiUEfGoJul5bIxc2g" key="Save" type="submit" variant="primary">Save</Button>
 	    ]}
 	  />
-	    
+
 	</div>
   )
 }

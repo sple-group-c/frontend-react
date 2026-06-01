@@ -43,6 +43,13 @@ const invalidTable = ({
             editable: false
           }
   ]}
+        itemsEvents={(Item) => [
+          <Link to={`/reminder/${Item.idReminder}`}>
+            <Button id="_VtLUQF2PEfGoIKyHUqClpA" size="sm" variant="primary">
+              Edit Reminder
+            </Button>
+          </Link>
+        ]}
   	/>
   </>
   )
