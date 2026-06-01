@@ -8,7 +8,7 @@ import { HeaderContext } from "@/commons/components"
 import { useSearchParams } from "react-router";
 import FormTambahMeeting from '../components/FormTambahMeeting'
 
-const ViewContainer = props => {
+const AddMeetingPage = props => {
   const [isLoading, setIsLoading] = useState({
 	tambahMeeting: false,
 
@@ -16,7 +16,7 @@ const ViewContainer = props => {
   const { setTitle } = useContext(HeaderContext);
 
   useEffect(() => {
-    setTitle("ViewContainer")
+    setTitle("Add Meeting Page")
   }, []);
 
   return (
@@ -39,5 +39,5 @@ const ViewContainer = props => {
 	</Layouts.ViewContainerLayout>
   )
 }
-export default ViewContainer
+export default AddMeetingPage
 

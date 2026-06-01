@@ -5,14 +5,14 @@ import { useParams } from "@/commons/hooks/useParams"
 import { useAuth } from '@/commons/auth';
 import { Button, Modal, Spinner } from '@/commons/components';
 import * as Layouts from "@/commons/layouts";
-const MeetingTable = ({ listMeeting,
-	}) => {
+const MeetingTable = ({ 
+    listMeetingManagement}) => {
   const { checkPermission } = useAuth();
   
   return (
   <>
     <Layouts.ListComponentTableLayout
-  	  items={[listMeeting]}
+  	  items={[listMeetingManagement]}
   	  itemsAttrs={[
           {
             id: "idMeeting",
@@ -22,10 +22,17 @@ const MeetingTable = ({ listMeeting,
             editable: false
           }
   ,        {
-            id: "name",
+            id: "meetingName",
             condition: "",
-            label: "Name",
+            label: "Meeting Name",
             featureName: "name",
+            editable: false
+          }
+  ,        {
+            id: "location",
+            condition: "",
+            label: "Location",
+            featureName: "location",
             editable: false
           }
   ,        {
@@ -39,14 +46,7 @@ const MeetingTable = ({ listMeeting,
             id: "endDate",
             condition: "",
             label: "End Date",
-            featureName: "endDate",
-            editable: false
-          }
-  ,        {
-            id: "location",
-            condition: "",
-            label: "Location",
-            featureName: "location",
+            featureName: "name",
             editable: false
           }
   ]}

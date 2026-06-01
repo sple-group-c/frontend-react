@@ -8,33 +8,33 @@ import { HeaderContext } from "@/commons/components"
 import { useNavigate } from "react-router";
 import { useAuth } from '@/commons/auth';
 import MeetingTable from "../components/MeetingTable";
-import getListMeeting from '../services/getListMeeting'
+import getListMeetingManagement from '../services/getListMeetingManagement'
 
-const TableMeetingPage = props => {
+const TableMeetingManagementPage = props => {
   const { checkPermission } = useAuth();
   const [isLoading, setIsLoading] = useState({
-	tableMeeting: false,
+	tableMeetingManagement: false,
 
   });
   const { setTitle } = useContext(HeaderContext);
 
   useEffect(() => {
-    setTitle("Table Meeting Page")
+    setTitle("Table Meeting Management Page")
   }, []);
 
 
-const [listMeeting, setListMeeting] = useState()
+const [listMeetingManagement, setListMeetingManagement] = useState()
 
 
 useEffect(() => {
 		
 		const fetchData = async () => {
 			try {
-				setIsLoading(prev => ({...prev, tableMeeting: true}))
-				const { data: listMeeting } = await getListMeeting()
-				setListMeeting(listMeeting.data)
+				setIsLoading(prev => ({...prev, tableMeetingManagement: true}))
+				const { data: listMeetingManagement } = await getListMeetingManagement()
+				setListMeetingManagement(listMeetingManagement.data)
 			} finally {
-				setIsLoading(prev => ({...prev, tableMeeting: false}))
+				setIsLoading(prev => ({...prev, tableMeetingManagement: false}))
 			}
 		}
 		fetchData()
@@ -47,8 +47,8 @@ useEffect(() => {
 			<Layouts.ViewContainerButtonLayout>
 			  	<Link to={`/meeting-management/add
 			  	`}>
-			  		<Button id="_6zGk8EzvEfGSBdf0iay4xQ" className="p-2" variant="primary">
-			  		  Add Meeting Management
+			  		<Button id="_6uVucF2-EfGWHr40AZXkdg" className="p-2" variant="primary">
+			  		  Tambah
 			  		</Button>
 			  	</Link>
 			
@@ -57,13 +57,13 @@ useEffect(() => {
 		}
 	>
 <Layouts.ListContainerTableLayout
-	title={"Table Meeting"}
+	title={"Table Meeting Management"}
 	singularName={"Meeting"}
-	items={[listMeeting]}
-	isLoading={isLoading.tableMeeting}
+	items={[listMeetingManagement]}
+	isLoading={isLoading.tableMeetingManagement}
 >
 	<MeetingTable
-		listMeeting={listMeeting}
+		listMeetingManagement={listMeetingManagement}
 		
 	/>
 </Layouts.ListContainerTableLayout>
@@ -71,5 +71,5 @@ useEffect(() => {
 	</Layouts.ViewContainerLayout>
   )
 }
-export default TableMeetingPage
+export default TableMeetingManagementPage
 

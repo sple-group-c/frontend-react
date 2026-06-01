@@ -33,7 +33,7 @@ const FormTambahMeeting = ({
   
   const navigate = useNavigate()
   
-  const onSubmitEvent = (data) => {
+  const tambah = (data) => {
     const cleanData = cleanFormData(data)
     saveMeetingManagement({
       ...cleanData,
@@ -53,7 +53,7 @@ const FormTambahMeeting = ({
 	<div>
 	  <Layouts.FormComponentLayout
 		  title="Tambah Meeting" 
-		  onSubmit={handleSubmit(onSubmitEvent)}
+		  onSubmit={handleSubmit(tambah)}
 	
 	    vas={[
 		  ]}
@@ -66,8 +66,24 @@ const FormTambahMeeting = ({
 	        control={control}
 	        render={({ field, fieldState }) => (
 	        <InputField
-	          label="Nama Meeting"
-	          placeholder="Masukkan nama meeting"
+	          label="Meeting Name"
+	          placeholder="Masukkan meeting name"
+	          fieldState={fieldState}
+	          {...field}
+	          isRequired={false}
+	        />
+	        )}
+	      />
+	
+	,
+	      <Controller
+	        key="location"
+	        name="location"
+	        control={control}
+	        render={({ field, fieldState }) => (
+	        <InputField
+	          label="Location"
+	          placeholder="Masukkan location"
 	          fieldState={fieldState}
 	          {...field}
 	          isRequired={false}
@@ -109,28 +125,12 @@ const FormTambahMeeting = ({
 	        )}
 	      />
 	
-	,
-	      <Controller
-	        key="location"
-	        name="location"
-	        control={control}
-	        render={({ field, fieldState }) => (
-	        <InputField
-	          label="Location"
-	          placeholder="Masukkan location"
-	          fieldState={fieldState}
-	          {...field}
-	          isRequired={false}
-	        />
-	        )}
-	      />
-	
 		  ,
 	
 		  ]}
 	
 		  itemsEvents={[
-		    <Button id="_hDKcAEzvEfGSBdf0iay4xQ" key="OnSubmit Event" type="submit" variant="primary">OnSubmit Event</Button>
+		    <Button id="_38_BIF2-EfGWHr40AZXkdg" key="Tambah" type="submit" variant="primary">Tambah</Button>
 	    ]}
 	  />
 	    
