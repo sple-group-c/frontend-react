@@ -35,11 +35,12 @@ const ModifiedFormEmailReminderForm = ({
   const navigate = useNavigate()
   
   const submit = (data) => {
-    const cleanData = cleanFormData(data)
+    const cleanData = cleanFormData({ ...data, isDisabled: false })
     saveEmailreminder({
       ...cleanData,
     })
     .then(({ data: { data } }) => {
+      navigate(`/emailreminder`);
   	notifySuccess(`Save Emailreminder berhasil!`);
     })
     .catch((error) => {
@@ -114,16 +115,16 @@ const ModifiedFormEmailReminderForm = ({
 	
 	
 	      <Controller
-	        key=""
-	        name=""
+	        key="remindingForId"
+	        name="remindingForId"
 	        control={control}
 	        render={({ field, fieldState }) => (
 	        <SelectionField
-	          
-	          label="remindingForId"
+	          label="Reminding For"
 	          options={taskList}
-	          optionLabel="remindingForId"
-	          placeholder="Masukkan remindingforid"
+	          optionKey="idTask"
+	          optionLabel="title"
+	          placeholder="Pilih task"
 	          fieldState={fieldState}
 	          {...field}
 	          isRequired={false}

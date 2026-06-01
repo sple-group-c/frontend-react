@@ -45,8 +45,11 @@ useEffect(() => {
 		buttons={
 			<>
 			<Layouts.ViewContainerButtonLayout>
-			  	
-			
+			  	<Link to="/emailreminder/add">
+			  		<Button id="_OT6BcFObEfGrfJrQ5Xvm_B" className="p-2" variant="primary">
+			  		  Tambah Email Reminder
+			  		</Button>
+			  	</Link>
 			  </Layouts.ViewContainerButtonLayout>
 			</>
 		}

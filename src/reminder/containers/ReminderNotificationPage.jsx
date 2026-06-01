@@ -62,9 +62,8 @@ useEffect(() => {
 	items={[reminderList]}
 	isLoading={isLoading.reminderNotificationTable}
 >
-	<invalidTable
+	<Table
 		reminderList={reminderList}
-		
 	/>
 </Layouts.ListContainerTableLayout>
 

@@ -35,7 +35,7 @@ const FormReminderForm = ({
   const navigate = useNavigate()
   
   const save = (data) => {
-    const cleanData = cleanFormData(data)
+    const cleanData = cleanFormData({ ...data, isDisabled: false })
     saveReminder({
       ...cleanData,
     })
@@ -98,16 +98,16 @@ const FormReminderForm = ({
 	
 	
 	      <Controller
-	        key=""
-	        name=""
+	        key="remindingForId"
+	        name="remindingForId"
 	        control={control}
 	        render={({ field, fieldState }) => (
 	        <SelectionField
-	          
-	          label="remindingForId"
+	          label="Reminding For"
 	          options={taskList}
-	          optionLabel="remindingForId"
-	          placeholder="Masukkan remindingforid"
+	          optionKey="idTask"
+	          optionLabel="title"
+	          placeholder="Pilih task"
 	          fieldState={fieldState}
 	          {...field}
 	          isRequired={false}

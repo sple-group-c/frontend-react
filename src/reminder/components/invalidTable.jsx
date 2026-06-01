@@ -21,18 +21,18 @@ const invalidTable = ({
             featureName: "hour",
             editable: false
           }
+            ,        {
+            id: "minute",
+            condition: "",
+            label: "minute",
+            featureName: "minute",
+            editable: false
+          }
   ,        {
             id: "isDisabled",
             condition: "",
             label: "isDisabled",
             featureName: "isDisabled",
-            editable: false
-          }
-  ,        {
-            id: "minute",
-            condition: "",
-            label: "minute",
-            featureName: "minute",
             editable: false
           }
   ,        {
