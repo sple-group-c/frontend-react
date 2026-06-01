@@ -5,14 +5,14 @@ import { useParams } from "@/commons/hooks/useParams"
 import { useAuth } from '@/commons/auth';
 import { Button, Modal, Spinner } from '@/commons/components';
 import * as Layouts from "@/commons/layouts";
-const invalidTable = ({ 
-    reminderList}) => {
+const EmailReminderTable = ({ 
+    listEmailReminder}) => {
   const { checkPermission } = useAuth();
   
   return (
   <>
     <Layouts.ListComponentTableLayout
-  	  items={[reminderList]}
+  	  items={[listEmailReminder]}
   	  itemsAttrs={[
           {
             id: "hour",
@@ -28,7 +28,7 @@ const invalidTable = ({
             featureName: "minute",
             editable: false
           }
-  ,        {
+    ,     {
             id: "isDisabled",
             condition: "",
             label: "isDisabled",
@@ -42,10 +42,21 @@ const invalidTable = ({
             featureName: "idReminder",
             editable: false
           }
+  ,        {
+            id: "email",
+            condition: "",
+            label: "email",
+            featureName: "email",
+            editable: false
+          }
   ]}
-        itemsEvents={(Item) => [
-          <Link to={`/reminder/${Item.idReminder}`}>
-            <Button id="_VtLUQF2PEfGoIKyHUqClpA" size="sm" variant="primary">
+        itemsEvents={(emailReminderItem) => [
+          <Link to={`/emailreminder/${emailReminderItem.idReminder}`}>
+            <Button
+              id="_VtLUQF2PEfGoIKyHUqClpA"
+              size="sm"
+              variant="primary"
+            >
               Edit Reminder
             </Button>
           </Link>
@@ -55,4 +66,4 @@ const invalidTable = ({
   )
 };
 
-export default invalidTable;
+export default EmailReminderTable;

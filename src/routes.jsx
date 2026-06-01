@@ -5,6 +5,7 @@ import roleRoutes from "@/role/routes";
 import staticPageRoutes from "@/staticPage/routes";
 import homeRoutes from "@/home/routes";
 import reminderRoutes from "@/reminder/routes";
+import emailReminderRoutes from "@/emailReminder/routes";
 
 const GlobalRoutes = () => {
   const router = useRoutes([
@@ -12,8 +13,9 @@ const GlobalRoutes = () => {
 	...staticPageRoutes,
 	...userRoutes,
 	...roleRoutes,
-	...homeRoutes, 
+	...homeRoutes,
 	...reminderRoutes,
+	...emailReminderRoutes
   ])
   return router
 }

@@ -1,44 +1,43 @@
-
 import React from "react";
-import { useNavigate, useSearchParams } from "react-router";
+import { useNavigate } from "react-router";
 import { Controller, useForm } from "react-hook-form";
 import {
   Button,
-  Form,
   InputField,
   SelectionField,
-  MultiSelectionField,
-  VisualizationAttr,
-  Spinner,
-  Modal,
 } from "@/commons/components";
-import {
-  ALLOWED_PERMISSIONS,
-  findAllowedPermission,
-} from "@/commons/constants/allowedPermission";
 import cleanFormData from "@/commons/utils/cleanFormData";
-import saveReminder from '../services/saveReminder'
-import { notifyError, notifySuccess} from "@/commons/utils/toaster";
+import updateReminder from '../services/updateReminder'
+import { notifyError, notifySuccess } from "@/commons/utils/toaster";
 import * as Layouts from "@/commons/layouts";
 
-const FormReminderForm = ({
-	taskList
- }) => {
-  const {
-    control,
-    handleSubmit,
-  } = useForm()
+const isDisabledOptions = [
+  { value: "false", label: "false" },
+  { value: "true", label: "true" },
+]
+
+const FormEditReminderForm = ({ reminder }) => {
+  const { control, handleSubmit } = useForm({
+    defaultValues: {
+      hour: reminder.hour,
+      minute: reminder.minute,
+      isDisabled: String(reminder.isDisabled),
+    }
+  })
 
   const navigate = useNavigate()
 
   const save = (data) => {
-    const cleanData = cleanFormData({ ...data, isDisabled: false })
-    saveReminder({
+    const cleanData = cleanFormData(data)
+    updateReminder({
       ...cleanData,
+      idReminder: String(reminder.idReminder),
+      remindingForId: String(reminder.remindingForId),
+      isDisabled: data.isDisabled === "true",
     })
     .then(({ data: { data } }) => {
       navigate(`/reminder`)
-  	notifySuccess(`Save Reminder berhasil!`);
+      notifySuccess(`Update Reminder berhasil!`);
     })
     .catch((error) => {
       console.error(error);
@@ -46,15 +45,13 @@ const FormReminderForm = ({
     });
   }
 
-
   return (
 	<div>
 	  <Layouts.FormComponentLayout
-		  title="ReminderForm"
+		  title="Edit Reminder Form"
 		  onSubmit={handleSubmit(save)}
 
-	    vas={[
-		  ]}
+	    vas={[]}
 
 		  formFields={[
 
@@ -95,19 +92,18 @@ const FormReminderForm = ({
 
 		  ,
 
-
 	      <Controller
-	        key="remindingForId"
-	        name="remindingForId"
+	        key="isDisabled"
+	        name="isDisabled"
 	        control={control}
-	        rules={{ required: "Harap pilih task" }}
+	        rules={{ required: "Harap pilih status" }}
 	        render={({ field, fieldState }) => (
 	        <SelectionField
-	          label="Reminding For"
-	          options={taskList}
-	          optionKey="idTask"
-	          optionLabel="title"
-	          placeholder="Pilih task"
+	          label="isDisabled"
+	          options={isDisabledOptions}
+	          optionKey="value"
+	          optionLabel="label"
+	          placeholder="Pilih status"
 	          fieldState={fieldState}
 	          {...field}
 	          isRequired={true}
@@ -117,12 +113,11 @@ const FormReminderForm = ({
 		  ]}
 
 		  itemsEvents={[
-		    <Button id="_T_rrQEiUEfGoJul5bIxc2g" key="Save" type="submit" variant="primary">Save</Button>
+		    <Button id="_EZFrYF2REfGoIKyHUqClpA" key="Save" type="submit" variant="primary">Save</Button>
 	    ]}
 	  />
-
 	</div>
   )
 }
 
-export default FormReminderForm
+export default FormEditReminderForm

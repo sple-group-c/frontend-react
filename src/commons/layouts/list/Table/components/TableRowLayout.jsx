@@ -147,7 +147,7 @@ const TableRowLayout = ({
               isFile={itemsAttr.condition.includes("isFile")}
               isHiddenMobile={itemsAttr.condition.includes("isHiddenMobile")}
             >
-              {item[itemsAttr.featureName]}
+              {item[itemsAttr.featureName] != null ? String(item[itemsAttr.featureName]) : ""}
             </TableCell>
           )
       )}

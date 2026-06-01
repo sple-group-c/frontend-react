@@ -10,7 +10,7 @@ const Brand = ({ onCLick, isMobileFirst, logoSrc }) => {
       onClick={onCLick}
       className={className}
     >
-      {logoSrc ? <img src={logoSrc} className='h-[1.1lh]' /> : 'Project Management'}
+      {logoSrc ? <img src={logoSrc} className='h-[1.1lh]' /> : 'Frontend React'}
     </Link>
   )
 }

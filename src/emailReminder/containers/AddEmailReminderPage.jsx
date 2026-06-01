@@ -6,18 +6,18 @@ import { Link } from "react-router";
 import { useParams } from "@/commons/hooks/useParams"
 import { HeaderContext } from "@/commons/components"
 import { useSearchParams } from "react-router";
-import FormReminderForm from '../components/FormReminderForm'
+import ModifiedFormEmailReminderForm from '../components/ModifiedFormEmailReminderForm'
 import getTaskList from '../services/getTaskList'
 
-const ReminderFormPage = props => {
+const AddEmailReminderPage = props => {
   const [isLoading, setIsLoading] = useState({
-	reminderForm: false,
+	emailReminderForm: false,
 
   });
   const { setTitle } = useContext(HeaderContext);
 
   useEffect(() => {
-    setTitle("ReminderFormPage")
+    setTitle("Add Email Reminder Page")
   }, []);
 
 
@@ -25,11 +25,11 @@ const [taskList, setTaskList] = useState()
 
   useEffect(() => {
     const fetch = async () => {
-	  setIsLoading(prev => ({...prev, reminderForm: true}))
+	  setIsLoading(prev => ({...prev, emailReminderForm: true}))
       const { data: taskListResponse } = await getTaskList({  })
 
 	  setTaskList(taskListResponse.data)
-	  setIsLoading(prev => ({...prev, reminderForm: false}))
+	  setIsLoading(prev => ({...prev, emailReminderForm: false}))
     }
 	fetch()
   }, [])
@@ -43,12 +43,12 @@ const [taskList, setTaskList] = useState()
 		}
 	>
 <Layouts.FormContainerLayout
-		singularName={""}
-		isLoading={isLoading.reminderForm}
+		singularName={"Reminder"}
+		isLoading={isLoading.emailReminderForm}
 	>
 		{taskList ? 
 		(<>
-		 <FormReminderForm
+		 <ModifiedFormEmailReminderForm
 			{...{ 
 				taskList
 				}}
@@ -59,5 +59,5 @@ const [taskList, setTaskList] = useState()
 	</Layouts.ViewContainerLayout>
   )
 }
-export default ReminderFormPage
+export default AddEmailReminderPage
 

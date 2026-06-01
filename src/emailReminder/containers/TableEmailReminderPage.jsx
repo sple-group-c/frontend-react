@@ -7,34 +7,34 @@ import { useParams } from "@/commons/hooks/useParams"
 import { HeaderContext } from "@/commons/components"
 import { useNavigate } from "react-router";
 import { useAuth } from '@/commons/auth';
-import Table from "../components/invalidTable";
-import getReminderList from '../services/getReminderList'
+import EmailReminderTable from "../components/EmailReminderTable";
+import getListEmailReminder from '../services/getListEmailReminder'
 
-const ReminderNotificationPage = props => {
+const TableEmailReminderPage = props => {
   const { checkPermission } = useAuth();
   const [isLoading, setIsLoading] = useState({
-	reminderNotificationTable: false,
+	tableEmailReminder: false,
 
   });
   const { setTitle } = useContext(HeaderContext);
 
   useEffect(() => {
-    setTitle("ReminderNotificationPage")
+    setTitle("Table Email Reminder Page")
   }, []);
 
 
-const [reminderList, setReminderList] = useState()
+const [listEmailReminder, setListEmailReminder] = useState()
 
 
 useEffect(() => {
 		
 		const fetchData = async () => {
 			try {
-				setIsLoading(prev => ({...prev, reminderNotificationTable: true}))
-				const { data: reminderList } = await getReminderList()
-				setReminderList(reminderList.data)
+				setIsLoading(prev => ({...prev, tableEmailReminder: true}))
+				const { data: listEmailReminder } = await getListEmailReminder()
+				setListEmailReminder(listEmailReminder.data)
 			} finally {
-				setIsLoading(prev => ({...prev, reminderNotificationTable: false}))
+				setIsLoading(prev => ({...prev, tableEmailReminder: false}))
 			}
 		}
 		fetchData()
@@ -45,30 +45,29 @@ useEffect(() => {
 		buttons={
 			<>
 			<Layouts.ViewContainerButtonLayout>
-			  	<Link to={`/reminder/tambah
-			  	`}>
-			  		<Button id="_dEwZYEiUEfGoJul5bIxc2g" className="p-2" variant="primary">
-			  		  Tambah Reminder
+			  	<Link to="/emailreminder/add">
+			  		<Button id="_OT6BcFObEfGrfJrQ5Xvm_B" className="p-2" variant="primary">
+			  		  Tambah Email Reminder
 			  		</Button>
 			  	</Link>
-			
 			  </Layouts.ViewContainerButtonLayout>
 			</>
 		}
 	>
 <Layouts.ListContainerTableLayout
-	title={"ReminderNotificationTable"}
-	singularName={""}
-	items={[reminderList]}
-	isLoading={isLoading.reminderNotificationTable}
+	title={"Table EmailReminder"}
+	singularName={"EmailReminder"}
+	items={[listEmailReminder]}
+	isLoading={isLoading.tableEmailReminder}
 >
-	<Table
-		reminderList={reminderList}
+	<EmailReminderTable
+		listEmailReminder={listEmailReminder}
+		
 	/>
 </Layouts.ListContainerTableLayout>
 
 	</Layouts.ViewContainerLayout>
   )
 }
-export default ReminderNotificationPage
+export default TableEmailReminderPage
 

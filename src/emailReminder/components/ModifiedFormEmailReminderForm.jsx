@@ -1,4 +1,3 @@
-
 import React from "react";
 import { useNavigate, useSearchParams } from "react-router";
 import { Controller, useForm } from "react-hook-form";
@@ -17,11 +16,11 @@ import {
   findAllowedPermission,
 } from "@/commons/constants/allowedPermission";
 import cleanFormData from "@/commons/utils/cleanFormData";
-import saveReminder from '../services/saveReminder'
+import saveEmailreminder from '../services/saveEmailreminder'
 import { notifyError, notifySuccess} from "@/commons/utils/toaster";
 import * as Layouts from "@/commons/layouts";
 
-const FormReminderForm = ({
+const ModifiedFormEmailReminderForm = ({
 	taskList
  }) => {
   const {
@@ -31,14 +30,14 @@ const FormReminderForm = ({
 
   const navigate = useNavigate()
 
-  const save = (data) => {
+  const submit = (data) => {
     const cleanData = cleanFormData({ ...data, isDisabled: false })
-    saveReminder({
+    saveEmailreminder({
       ...cleanData,
     })
     .then(({ data: { data } }) => {
-      navigate(`/reminder`)
-  	notifySuccess(`Save Reminder berhasil!`);
+      navigate(`/emailreminder`);
+  	notifySuccess(`Save Emailreminder berhasil!`);
     })
     .catch((error) => {
       console.error(error);
@@ -50,8 +49,8 @@ const FormReminderForm = ({
   return (
 	<div>
 	  <Layouts.FormComponentLayout
-		  title="ReminderForm"
-		  onSubmit={handleSubmit(save)}
+		  title="Email Reminder Form"
+		  onSubmit={handleSubmit(submit)}
 
 	    vas={[
 		  ]}
@@ -93,8 +92,24 @@ const FormReminderForm = ({
 	        )}
 	      />
 
-		  ,
+	,
+	      <Controller
+	        key="email"
+	        name="email"
+	        control={control}
+	        rules={{ required: "Harap masukkan email" }}
+	        render={({ field, fieldState }) => (
+	        <InputField
+	          label="Email"
+	          placeholder="Masukkan email"
+	          fieldState={fieldState}
+	          {...field}
+	          isRequired={true}
+	        />
+	        )}
+	      />
 
+		  ,
 
 	      <Controller
 	        key="remindingForId"
@@ -117,7 +132,7 @@ const FormReminderForm = ({
 		  ]}
 
 		  itemsEvents={[
-		    <Button id="_T_rrQEiUEfGoJul5bIxc2g" key="Save" type="submit" variant="primary">Save</Button>
+		    <Button id="_4mkSoFOXEfGrfJrQ5Xvm_A" key="Submit" type="submit" variant="primary">Submit</Button>
 	    ]}
 	  />
 
@@ -125,4 +140,4 @@ const FormReminderForm = ({
   )
 }
 
-export default FormReminderForm
+export default ModifiedFormEmailReminderForm
