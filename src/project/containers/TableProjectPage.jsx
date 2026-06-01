@@ -25,6 +25,7 @@ const TableProjectPage = props => {
 
 const [listProject, setListProject] = useState()
 
+
 useEffect(() => {
 		
 		const fetchData = async () => {
@@ -43,7 +44,15 @@ useEffect(() => {
 	<Layouts.ViewContainerLayout
 		buttons={
 			<>
-			<></>
+			<Layouts.ViewContainerButtonLayout>
+			  	<Link to={`/project/tambah
+			  	`}>
+			  		<Button id="_emrJsF19EfGZyZcHNmogjQ" className="p-2" variant="primary">
+			  		  Add Project
+			  		</Button>
+			  	</Link>
+			
+			  </Layouts.ViewContainerButtonLayout>
 			</>
 		}
 	>

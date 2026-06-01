@@ -6,19 +6,19 @@ import { useAuth } from '@/commons/auth';
 import { Button, Modal, Spinner } from '@/commons/components';
 import { isMobile } from '@/commons/utils/responsive';
 import * as Layouts from "@/commons/layouts";
-const ProjectTable = ({ 
-    listProject}) => {
+const ProgrammingProjectTable = ({ 
+    listProgrammingProject}) => {
   const { checkPermission } = useAuth();
   const navigate = useNavigate();
-  const detail = async (projectItem) => {
-    isMobile() && navigate(`/project/${projectItem.idProject}`
+  const detail = async (programmingProjectItem) => {
+    isMobile() && navigate(`/programmingproject/${programmingProjectItem.idProject}`
     );
   };
   
   return (
   <>
     <Layouts.ListComponentTableLayout
-  	  items={[listProject]}
+  	  items={[listProgrammingProject]}
   	  detail={detail}
   	  itemsAttrs={[
           {
@@ -36,10 +36,10 @@ const ProjectTable = ({
             editable: false
           }
   ]}
-        itemsEvents={(projectItem) => [
-          <Link to={`/project/${projectItem.idProject}`}>
+        itemsEvents={(programmingProjectItem) => [
+          <Link to={`/programmingproject/${programmingProjectItem.idProject}`}>
             <Button
-              id="_O0fN4F1-EfGZyZcHNmogjQ"
+              id="_paw5MF2PEfGZyZcHNmogjQ"
               size="sm"
               variant=
                   "primary"
@@ -53,4 +53,4 @@ const ProjectTable = ({
   )
 };
 
-export default ProjectTable;
+export default ProgrammingProjectTable;
